@@ -13,7 +13,8 @@ public class Invoice {
     @Column(name = "description")
     private String description;
 
-    public Invoice(){}
+
+    public Invoice() {}
 
     public Invoice(String description) {
         this.description = description;

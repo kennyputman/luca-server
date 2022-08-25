@@ -1,26 +1,11 @@
 package com.lucaapps.server.invoice;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class InvoiceService {
+public interface InvoiceService {
 
+    List<Invoice> getAllInvoices();
 
-    private final InvoiceRepository invoiceRepository;
-
-    @Autowired
-    public InvoiceService(InvoiceRepository invoiceRepository) {
-        this.invoiceRepository = invoiceRepository;
-    }
-
-
-    @Transactional
-    public List<Invoice> getAllInvoices(){
-        return this.invoiceRepository.findAll();
-    }
+    Optional<Invoice> getInvoiceById(Long id);
 }
