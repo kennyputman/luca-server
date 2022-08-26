@@ -1,32 +1,20 @@
 package com.lucaapps.server.invoice;
 
+import com.lucaapps.server.shared.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "invoice")
-public class Invoice {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Invoice extends BaseEntity {
 
     @Column(name = "description")
     private String description;
-
 
     public Invoice() {}
 
     public Invoice(String description) {
         this.description = description;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getDescription() {

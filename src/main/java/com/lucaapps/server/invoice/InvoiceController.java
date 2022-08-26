@@ -1,7 +1,6 @@
 package com.lucaapps.server.invoice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,18 +19,17 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Invoice>> getInvoices(){
-        return new ResponseEntity<>(this.invoiceService.getAllInvoices(), HttpStatus.OK);
+    public ResponseEntity<List<Invoice>> getInvoices() {
+        return ResponseEntity.ok(this.invoiceService.getAllInvoices());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Invoice> getInvoiceById(@PathVariable Long id){
+    public ResponseEntity<Invoice> getInvoiceById(@PathVariable Long id) {
         Optional<Invoice> invoice = this.invoiceService.getInvoiceById(id);
-        if(invoice.isPresent()){
-            return new ResponseEntity<>(invoice.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (invoice.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(invoice.get());
     }
 
 
