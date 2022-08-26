@@ -15,11 +15,11 @@ public class BaseEntity {
     protected Long id;
 
     @CreatedDate
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
     protected LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     protected LocalDateTime updatedAt;
 
     public Long getId() {

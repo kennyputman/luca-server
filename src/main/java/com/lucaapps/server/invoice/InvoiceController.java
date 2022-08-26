@@ -1,9 +1,11 @@
 package com.lucaapps.server.invoice;
 
+import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +32,12 @@ public class InvoiceController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(invoice.get());
+    }
+
+    @PostMapping
+    public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody final InvoicePostDto invoice){
+        Invoice newInvoice = this.invoiceService.addNewInvoice(invoice);
+        return ResponseEntity.ok(newInvoice);
     }
 
 
