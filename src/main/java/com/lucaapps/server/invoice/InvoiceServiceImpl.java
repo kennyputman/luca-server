@@ -38,4 +38,15 @@ public class InvoiceServiceImpl implements InvoiceService {
         Invoice invoice = new Invoice(invoicePostDto.getDescription());
         return this.invoiceRepository.save(invoice);
     }
+
+    @Override
+    public void deleteInvoice(Long invoiceId) {
+        boolean exists = this.invoiceRepository.existsById(invoiceId);
+
+        if(!exists){
+            throw new IllegalArgumentException("invoice Id does not exist");
+        }
+
+        this.invoiceRepository.deleteById(invoiceId);
+    }
 }

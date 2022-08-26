@@ -40,6 +40,10 @@ public class InvoiceController {
         return ResponseEntity.ok(newInvoice);
     }
 
+    @DeleteMapping("/{id}")
+    public  void deleteInvoice(@PathVariable Long id ){
+        this.invoiceService.deleteInvoice(id);
+    }
 
 }
 
