@@ -1,4 +1,4 @@
-package com.lucaapps.server.invoice;
+package com.lucaapps.server.invoice.repository;
 
 import com.lucaapps.server.invoice.entities.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;

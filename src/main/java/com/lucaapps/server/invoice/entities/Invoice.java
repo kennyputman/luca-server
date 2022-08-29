@@ -1,6 +1,6 @@
 package com.lucaapps.server.invoice.entities;
 
-import com.lucaapps.server.shared.BaseEntity;
+import com.lucaapps.server.common.BaseEntity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

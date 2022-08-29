@@ -1,4 +1,4 @@
-package com.lucaapps.server.shared;
+package com.lucaapps.server.common;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

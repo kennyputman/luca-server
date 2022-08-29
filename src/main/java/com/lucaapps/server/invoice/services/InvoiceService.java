@@ -1,4 +1,4 @@
-package com.lucaapps.server.invoice;
+package com.lucaapps.server.invoice.services;
 
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;

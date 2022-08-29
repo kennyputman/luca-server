@@ -1,7 +1,10 @@
 INSERT INTO invoice(created_at, updated_at, description, payment_due)
-VALUES (current_timestamp - INTERVAL '3' DAY, current_timestamp - INTERVAL '4' DAY, 'Bathroom Renovations', current_timestamp + INTERVAL '30' DAY),
-       (current_timestamp - INTERVAL '2' DAY, current_timestamp - INTERVAL '3' DAY, 'Patio & Deck', current_timestamp + INTERVAL '30' DAY),
-       (current_timestamp - INTERVAL '1' DAY, current_timestamp - INTERVAL '2' DAY, 'Drywall installation', current_timestamp + INTERVAL '30' DAY),
+VALUES (current_timestamp - INTERVAL '3' DAY, current_timestamp - INTERVAL '4' DAY,
+        'Bathroom Renovations', current_timestamp + INTERVAL '30' DAY),
+       (current_timestamp - INTERVAL '2' DAY, current_timestamp - INTERVAL '3' DAY,
+        'Patio & Deck', current_timestamp + INTERVAL '30' DAY),
+       (current_timestamp - INTERVAL '1' DAY, current_timestamp - INTERVAL '2' DAY,
+        'Drywall installation', current_timestamp + INTERVAL '30' DAY),
        (current_timestamp, current_timestamp, 'House upgrades', current_timestamp + INTERVAL '30' DAY);
 
 
