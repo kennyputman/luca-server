@@ -1,6 +1,7 @@
 package com.lucaapps.server.invoice;
 
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,12 @@ public class InvoiceController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(invoice.get());
+    }
+
+    @GetMapping("/{id}/items")
+    public ResponseEntity<InvoiceWithItemsDto> getInvoiceWithItems(@PathVariable Long id){
+        InvoiceWithItemsDto invoice = this.invoiceService.getInvoiceWithItems(id);
+        return ResponseEntity.ok(invoice);
     }
 
     @PostMapping

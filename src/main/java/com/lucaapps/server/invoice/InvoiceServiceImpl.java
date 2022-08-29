@@ -1,13 +1,12 @@
 package com.lucaapps.server.invoice;
 
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,4 +51,33 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         this.invoiceRepository.deleteById(invoiceId);
     }
+
+    @Override
+    public InvoiceWithItemsDto getInvoiceWithItems(Long id) {
+        Optional<Invoice> invoiceById  = this.invoiceRepository.findById(id);
+
+        if (invoiceById.isEmpty()) {
+            throw new IllegalArgumentException("invoice of id: " + id + " not found");
+        }
+        Invoice i = invoiceById.get();
+        return new InvoiceWithItemsDto(i.getId(), i.getDescription(), i.getCreatedAt(),
+                i.getPaymentDue(), i.getTotalCost(), i.getItems());
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
