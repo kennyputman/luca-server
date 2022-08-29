@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -48,9 +47,9 @@ public class InvoiceController {
         return ResponseEntity.ok(invoice);
     }
 
-    @GetMapping("/{id}/items/{item_id}")
-    public ResponseEntity<Item> getItemById(@PathVariable(name = "item_id") Long id){
-       Optional<Item> item = this.itemService.getItemById(id);
+    @GetMapping("/{invoice_id}/items/{item_id}")
+    public ResponseEntity<Item> getItemById(@PathVariable("invoice_id" ) Long invoice_id,  @PathVariable("item_id") Long item_id){
+       Optional<Item> item = this.itemService.getItemById(invoice_id, item_id);
        if(item.isEmpty()){
            return ResponseEntity.notFound().build();
        }

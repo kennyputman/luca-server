@@ -17,8 +17,9 @@ public class ItemServiceImpl implements ItemService{
         this.itemRepository = itemRepository;
     }
 
+
     @Override
-    public Optional<Item> getItemById(Long id) {
-        return this.itemRepository.findById(id);
+    public Optional<Item> getItemById(Long invoice_id, Long item_id) {
+        return this.itemRepository.findById(invoice_id, item_id);
     }
 }

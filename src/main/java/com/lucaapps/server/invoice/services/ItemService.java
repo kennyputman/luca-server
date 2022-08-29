@@ -5,5 +5,5 @@ import com.lucaapps.server.invoice.entities.Item;
 import java.util.Optional;
 
 public interface ItemService {
-    Optional<Item> getItemById(Long id);
+    Optional<Item> getItemById(Long invoice_id, Long item_id);
 }

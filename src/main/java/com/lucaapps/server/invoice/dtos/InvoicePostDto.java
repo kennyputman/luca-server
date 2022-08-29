@@ -2,7 +2,6 @@ package com.lucaapps.server.invoice.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
