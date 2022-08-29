@@ -1,6 +1,7 @@
 package com.lucaapps.server.invoice;
 
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.invoice.entities.Invoice;
 
 import java.util.List;
 import java.util.Optional;
