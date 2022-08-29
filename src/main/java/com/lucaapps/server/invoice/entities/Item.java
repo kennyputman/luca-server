@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 @Table(name = "item")
 public class Item extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
@@ -24,19 +24,19 @@ public class Item extends BaseEntity {
 
     public Item(){};
 
-    public Item(String name, BigDecimal price, int quantity, Invoice invoice) {
-        this.name = name;
+    public Item(String description, BigDecimal price, int quantity, Invoice invoice) {
+        this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.invoice = invoice;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String name) {
+        this.description = name;
     }
 
     public BigDecimal getPrice() {
