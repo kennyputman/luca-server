@@ -24,18 +24,17 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    @Transactional
     public List<Invoice> getAllInvoices(){
         return this.invoiceRepository.findAll();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public Optional<Invoice> getInvoiceById(Long id) {
         return this.invoiceRepository.findById(id);
     }
 
     @Override
+    @Transactional
     public Invoice addNewInvoice(InvoicePostDto invoicePostDto) {
 
         Invoice invoice = new Invoice(invoicePostDto.getDescription(), invoicePostDto.getPaymentDue());
@@ -43,6 +42,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    @Transactional
     public void deleteInvoice(Long invoiceId) {
         boolean exists = this.invoiceRepository.existsById(invoiceId);
 
