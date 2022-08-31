@@ -1,5 +1,6 @@
 package com.lucaapps.server.invoice.controllers;
 
+import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
@@ -28,27 +29,20 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Invoice>> getInvoices() {
+    public ResponseEntity<List<InvoiceDto>> getInvoices() {
         return ResponseEntity.ok(this.invoiceService.getAllInvoices());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Invoice> getInvoiceById(@PathVariable Long id) {
-        Optional<Invoice> invoice = this.invoiceService.getInvoiceById(id);
-        if (invoice.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(invoice.get());
-    }
 
-    @GetMapping("/{id}/items")
+    @GetMapping("/{id}")
     public ResponseEntity<InvoiceWithItemsDto> getInvoiceWithItems(@PathVariable Long id){
         InvoiceWithItemsDto invoice = this.invoiceService.getInvoiceWithItems(id);
         return ResponseEntity.ok(invoice);
     }
 
     @GetMapping("/{invoice_id}/items/{item_id}")
-    public ResponseEntity<Item> getItemById(@PathVariable("invoice_id" ) Long invoice_id,  @PathVariable("item_id") Long item_id){
+    public ResponseEntity<Item> getItemById(
+            @PathVariable("invoice_id" ) Long invoice_id,  @PathVariable("item_id") Long item_id){
        Optional<Item> item = this.itemService.getItemById(invoice_id, item_id);
        if(item.isEmpty()){
            return ResponseEntity.notFound().build();

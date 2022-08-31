@@ -1,5 +1,6 @@
 package com.lucaapps.server.invoice.services;
 
+import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +26,15 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public List<Invoice> getAllInvoices(){
-        return this.invoiceRepository.findAll();
+    public List<InvoiceDto> getAllInvoices(){
+        List<Invoice> invoices = this.invoiceRepository.findAll();
+        List<InvoiceDto> invoiceDtos = new ArrayList<>();
+        for (Invoice i: invoices) {
+            invoiceDtos.add(new InvoiceDto(
+                    i.getId(), i.getDescription(), i.getCreatedAt(), i.getPaymentDue()
+            ));
+        }
+        return invoiceDtos;
     }
 
     @Override
