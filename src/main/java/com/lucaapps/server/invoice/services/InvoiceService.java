@@ -14,7 +14,7 @@ public interface InvoiceService {
 
     Optional<Invoice> getInvoiceById(Long id);
 
-    Invoice addNewInvoice(InvoicePostDto invoicePostDto);
+    InvoiceWithItemsDto addNewInvoice(InvoicePostDto invoicePostDto);
 
     void deleteInvoice(Long invoiceId);
 

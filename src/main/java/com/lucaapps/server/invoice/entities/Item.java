@@ -31,6 +31,10 @@ public class Item extends BaseEntity {
         this.invoice = invoice;
     }
 
+    public void setInvoice(Invoice invoice){
+        this.invoice = invoice;
+    }
+
     public BigDecimal sum(){
         return this.price.multiply(BigDecimal.valueOf(this.quantity));
     }
@@ -58,4 +62,5 @@ public class Item extends BaseEntity {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }

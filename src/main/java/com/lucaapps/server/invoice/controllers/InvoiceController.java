@@ -3,7 +3,6 @@ package com.lucaapps.server.invoice.controllers;
 import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
-import com.lucaapps.server.invoice.entities.Invoice;
 import com.lucaapps.server.invoice.entities.Item;
 import com.lucaapps.server.invoice.services.InvoiceService;
 import com.lucaapps.server.invoice.services.ItemService;
@@ -51,9 +50,9 @@ public class InvoiceController {
     }
 
     @PostMapping
-    public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody final InvoicePostDto invoice){
-        Invoice newInvoice = this.invoiceService.addNewInvoice(invoice);
-        return ResponseEntity.ok(newInvoice);
+    public ResponseEntity<InvoiceWithItemsDto> createInvoice(@Valid @RequestBody final InvoicePostDto invoicePost){
+        InvoiceWithItemsDto invoice = this.invoiceService.addNewInvoice(invoicePost);
+        return ResponseEntity.ok(invoice);
     }
 
     @DeleteMapping("/{id}")

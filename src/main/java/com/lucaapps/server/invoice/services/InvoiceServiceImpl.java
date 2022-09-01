@@ -4,6 +4,7 @@ import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
+import com.lucaapps.server.invoice.entities.Item;
 import com.lucaapps.server.invoice.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,20 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     @Transactional
-    public Invoice addNewInvoice(InvoicePostDto invoicePostDto) {
+    public InvoiceWithItemsDto addNewInvoice(InvoicePostDto invoicePostDto) {
 
-        Invoice invoice = new Invoice(invoicePostDto.getDescription(), invoicePostDto.getPaymentDue());
-        return this.invoiceRepository.save(invoice);
+        Invoice mappedInvoice = new Invoice(invoicePostDto.getDescription(), invoicePostDto.getPaymentDue(), invoicePostDto.getItems());
+        for (Item item: mappedInvoice.getItems()) {
+            item.setInvoice(mappedInvoice);
+        }
+
+        Invoice createdInvoice =  this.invoiceRepository.save(mappedInvoice);
+
+        InvoiceWithItemsDto invoice = new InvoiceWithItemsDto(
+                createdInvoice.getId(), createdInvoice.getDescription(),
+                createdInvoice.getCreatedAt(), createdInvoice.getPaymentDue(),
+                createdInvoice.getTotalCost(), createdInvoice.getItems());
+        return invoice;
     }
 
     @Override

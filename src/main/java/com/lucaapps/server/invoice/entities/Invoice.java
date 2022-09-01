@@ -18,20 +18,21 @@ public class Invoice extends BaseEntity {
     @Column(name = "payment_due")
     private LocalDateTime paymentDue;
 
-    @OneToMany(mappedBy = "invoice")
-    private List<Item> items;
+    @OneToMany(mappedBy = "invoice",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Item> items = new ArrayList<>();
 
     public Invoice() {}
 
-    public Invoice(String description, LocalDateTime paymentDue) {
+    public Invoice(String description, LocalDateTime paymentDue, List<Item> items) {
         this.description = description;
         this.paymentDue = paymentDue;
-        this.items = new ArrayList<>();
+        this.items = items;
     }
 
     public BigDecimal getTotalCost(){
         return this.items.stream().map( i -> i.sum()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 
     public String getDescription() {
         return description;
