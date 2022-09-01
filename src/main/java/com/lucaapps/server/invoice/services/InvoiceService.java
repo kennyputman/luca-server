@@ -2,6 +2,7 @@ package com.lucaapps.server.invoice.services;
 
 import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.invoice.dtos.InvoicePutDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
 
@@ -19,4 +20,6 @@ public interface InvoiceService {
     void deleteInvoice(Long invoiceId);
 
     InvoiceWithItemsDto getInvoiceWithItems(Long id);
+
+    InvoiceWithItemsDto updateInvoice(InvoicePutDto updatedInvoice);
 }

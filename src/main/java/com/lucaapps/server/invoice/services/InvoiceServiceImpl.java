@@ -2,6 +2,7 @@ package com.lucaapps.server.invoice.services;
 
 import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.invoice.dtos.InvoicePutDto;
 import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.invoice.entities.Invoice;
 import com.lucaapps.server.invoice.entities.Item;
@@ -62,6 +63,32 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
+    public InvoiceWithItemsDto updateInvoice(InvoicePutDto updatedInvoice) {
+        Optional<Invoice> exists = this.invoiceRepository.findById(updatedInvoice.getId());
+
+        if(exists.isEmpty()){
+            throw new IllegalArgumentException("Invoice of id: " + updatedInvoice.getId() + " not found");
+        }
+
+        Invoice invoice = exists.get();
+        invoice.setDescription(updatedInvoice.getDescription());
+        invoice.setPaymentDue(updatedInvoice.getPaymentDue());
+        invoice.setItems(updatedInvoice.getItems());
+
+        for (Item item: invoice.getItems()) {
+            item.setInvoice(invoice);
+        }
+
+        Invoice createdInvoice =  this.invoiceRepository.save(invoice);
+
+        InvoiceWithItemsDto invoiceDto = new InvoiceWithItemsDto(
+                createdInvoice.getId(), createdInvoice.getDescription(),
+                createdInvoice.getCreatedAt(), createdInvoice.getPaymentDue(),
+                createdInvoice.getTotalCost(), createdInvoice.getItems());
+        return invoiceDto;
+    }
+
+    @Override
     @Transactional
     public void deleteInvoice(Long invoiceId) {
         boolean exists = this.invoiceRepository.existsById(invoiceId);
@@ -84,6 +111,8 @@ public class InvoiceServiceImpl implements InvoiceService {
         return new InvoiceWithItemsDto(i.getId(), i.getDescription(), i.getCreatedAt(),
                 i.getPaymentDue(), i.getTotalCost(), i.getItems());
     }
+
+
 }
 
 
