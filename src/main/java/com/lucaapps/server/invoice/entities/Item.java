@@ -19,7 +19,7 @@ public class Item extends BaseEntity {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "invoice_id", referencedColumnName = "id")
+    @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
     public Item(){};
