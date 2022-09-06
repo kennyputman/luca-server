@@ -1,5 +1,7 @@
 package com.lucaapps.server.invoice.services;
 
+import com.lucaapps.server.exception.AppException;
+import com.lucaapps.server.exception.Error;
 import com.lucaapps.server.invoice.dtos.InvoiceDto;
 import com.lucaapps.server.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.invoice.dtos.InvoicePutDto;
@@ -40,8 +42,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public Optional<Invoice> getInvoiceById(Long id) {
-        return this.invoiceRepository.findById(id);
+    public Invoice getInvoiceById(Long id) {
+
+       Invoice found =  this.invoiceRepository.findById(id)
+               .orElseThrow(() -> new AppException(Error.INVOICE_NOT_FOUND));
+       return found;
     }
 
     @Override
@@ -102,14 +107,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public InvoiceWithItemsDto getInvoiceWithItems(Long id) {
-        Optional<Invoice> invoiceById  = this.invoiceRepository.findById(id);
+        Invoice invoice  = this.invoiceRepository.findById(id)
+                .orElseThrow(()-> new AppException(Error.INVOICE_NOT_FOUND));
 
-        if (invoiceById.isEmpty()) {
-            throw new IllegalArgumentException("invoice of id: " + id + " not found");
-        }
-        Invoice i = invoiceById.get();
-        return new InvoiceWithItemsDto(i.getId(), i.getDescription(), i.getCreatedAt(),
-                i.getPaymentDue(), i.getTotalCost(), i.getItems());
+        return new InvoiceWithItemsDto(invoice.getId(), invoice.getDescription(), invoice.getCreatedAt(),
+                invoice.getPaymentDue(), invoice.getTotalCost(), invoice.getItems());
     }
 
 

@@ -13,7 +13,7 @@ public interface InvoiceService {
 
     List<InvoiceDto> getAllInvoices();
 
-    Optional<Invoice> getInvoiceById(Long id);
+    Invoice getInvoiceById(Long id);
 
     InvoiceWithItemsDto addNewInvoice(InvoicePostDto invoicePostDto);
 
