@@ -1,39 +1,17 @@
 package com.lucaapps.server.exception;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
+@Builder
 public class CustomErrorResponse {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
-    private LocalDateTime timestamp;
-    private int status;
-    private String message;
+    private final LocalDateTime timestamp;
+    private final int status;
+    private final String message;
 
-    public CustomErrorResponse(){}
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
