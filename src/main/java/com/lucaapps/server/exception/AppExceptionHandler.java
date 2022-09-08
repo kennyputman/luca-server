@@ -18,11 +18,11 @@ public class AppExceptionHandler {
         CustomErrorResponse errors = CustomErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .message(e.getMessage())
-                .status(e.getError().getStatus().value())
+                .status(e.getStatus().value())
                 .build();
 
         return ResponseEntity
-                .status(e.getError().getStatus())
+                .status(e.getStatus())
                 .body(errors);
     }
 }

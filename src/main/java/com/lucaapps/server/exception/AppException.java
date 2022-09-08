@@ -1,15 +1,18 @@
 package com.lucaapps.server.exception;
 
+import org.springframework.http.HttpStatus;
+
 public class AppException extends RuntimeException {
 
-    private final Error error;
+    private final HttpStatus status;
 
     public AppException(Error error) {
         super(error.getMessage());
-        this.error = error;
+        this.status = error.getStatus();
     }
 
-    public Error getError() {
-        return error;
+    public HttpStatus getStatus(){
+        return this.status;
     }
+
 }
