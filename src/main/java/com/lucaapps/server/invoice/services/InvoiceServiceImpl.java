@@ -124,7 +124,6 @@ public class InvoiceServiceImpl implements InvoiceService {
                 invoice.getPaymentDue(), invoice.getTotalCost(), invoice.getItems());
     }
 
-
 }
 
 

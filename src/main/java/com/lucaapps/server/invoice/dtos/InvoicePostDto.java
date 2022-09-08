@@ -29,5 +29,4 @@ public class InvoicePostDto {
     @JsonProperty("items")
     private List<Item> items;
 
-
 }
