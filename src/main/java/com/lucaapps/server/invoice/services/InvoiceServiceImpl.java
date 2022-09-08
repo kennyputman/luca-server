@@ -64,20 +64,11 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
 
         Invoice createdInvoice = this.invoiceRepository.save(mappedInvoice);
-
-        InvoiceWithItemsDto invoice = InvoiceWithItemsDto.builder()
-                .id(createdInvoice.getId())
-                .createdAt(createdInvoice.getCreatedAt())
-                .description(createdInvoice.getDescription())
-                .paymentDue(createdInvoice.getPaymentDue())
-                .totalCost(createdInvoice.getTotalCost())
-                .items(createdInvoice.getItems())
-                .build();
-
-        return invoice;
+        return mapInvoiceToInvoiceWithItemsDto(createdInvoice);
     }
 
     @Override
+    @Transactional
     public InvoiceWithItemsDto updateInvoice(InvoicePutDto updatedInvoice) {
         Optional<Invoice> exists = this.invoiceRepository.findById(updatedInvoice.getId());
 
@@ -95,24 +86,15 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
 
         Invoice createdInvoice = this.invoiceRepository.save(invoice);
-
-        InvoiceWithItemsDto invoiceDto = new InvoiceWithItemsDto(
-                createdInvoice.getId(), createdInvoice.getDescription(),
-                createdInvoice.getCreatedAt(), createdInvoice.getPaymentDue(),
-                createdInvoice.getTotalCost(), createdInvoice.getItems());
-        return invoiceDto;
+        return mapInvoiceToInvoiceWithItemsDto(createdInvoice);
     }
 
     @Override
     @Transactional
     public void deleteInvoice(Long invoiceId) {
-        boolean exists = this.invoiceRepository.existsById(invoiceId);
-
-        if (!exists) {
-            throw new IllegalArgumentException("invoice Id does not exist");
-        }
-
-        this.invoiceRepository.deleteById(invoiceId);
+        Invoice invoice = this.invoiceRepository.findById(invoiceId).orElseThrow(() ->
+                new AppException(Error.INVOICE_NOT_FOUND));
+        this.invoiceRepository.delete(invoice);
     }
 
     @Override
@@ -120,8 +102,18 @@ public class InvoiceServiceImpl implements InvoiceService {
         Invoice invoice = this.invoiceRepository.findById(id)
                 .orElseThrow(() -> new AppException(Error.INVOICE_NOT_FOUND));
 
-        return new InvoiceWithItemsDto(invoice.getId(), invoice.getDescription(), invoice.getCreatedAt(),
-                invoice.getPaymentDue(), invoice.getTotalCost(), invoice.getItems());
+        return mapInvoiceToInvoiceWithItemsDto(invoice);
+    }
+
+    private InvoiceWithItemsDto mapInvoiceToInvoiceWithItemsDto(Invoice i){
+        return InvoiceWithItemsDto.builder()
+                .id(i.getId())
+                .createdAt(i.getCreatedAt())
+                .description(i.getDescription())
+                .paymentDue(i.getPaymentDue())
+                .totalCost(i.getTotalCost())
+                .items(i.getItems())
+                .build();
     }
 
 }
