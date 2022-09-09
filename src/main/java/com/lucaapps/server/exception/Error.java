@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 
 public enum Error {
 
-    INVOICE_NOT_FOUND("Invoice not found", HttpStatus.NOT_FOUND);
+    INVOICE_NOT_FOUND("Invoice not found", HttpStatus.NOT_FOUND),
+    USERNAME_NOT_FOUND("username not found", HttpStatus.NOT_FOUND);
 
     private final String message;
     private final HttpStatus status;
