@@ -1,7 +1,7 @@
-package com.lucaapps.server.invoice.dtos;
+package com.lucaapps.server.domain.invoice.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.lucaapps.server.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.entities.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

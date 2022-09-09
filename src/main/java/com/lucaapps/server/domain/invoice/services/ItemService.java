@@ -1,6 +1,6 @@
-package com.lucaapps.server.invoice.services;
+package com.lucaapps.server.domain.invoice.services;
 
-import com.lucaapps.server.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.entities.Item;
 
 import java.util.Optional;
 

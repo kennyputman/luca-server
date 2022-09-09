@@ -1,13 +1,12 @@
-package com.lucaapps.server.invoice.services;
+package com.lucaapps.server.domain.invoice.services;
 
-import com.lucaapps.server.invoice.dtos.InvoiceDto;
-import com.lucaapps.server.invoice.dtos.InvoicePostDto;
-import com.lucaapps.server.invoice.dtos.InvoicePutDto;
-import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
-import com.lucaapps.server.invoice.entities.Invoice;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePutDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceWithItemsDto;
+import com.lucaapps.server.domain.invoice.entities.Invoice;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface InvoiceService {
 

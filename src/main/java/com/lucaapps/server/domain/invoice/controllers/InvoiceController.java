@@ -1,12 +1,12 @@
-package com.lucaapps.server.invoice.controllers;
+package com.lucaapps.server.domain.invoice.controllers;
 
-import com.lucaapps.server.invoice.dtos.InvoiceDto;
-import com.lucaapps.server.invoice.dtos.InvoicePostDto;
-import com.lucaapps.server.invoice.dtos.InvoicePutDto;
-import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
-import com.lucaapps.server.invoice.entities.Item;
-import com.lucaapps.server.invoice.services.InvoiceService;
-import com.lucaapps.server.invoice.services.ItemService;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePutDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceWithItemsDto;
+import com.lucaapps.server.domain.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.services.InvoiceService;
+import com.lucaapps.server.domain.invoice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

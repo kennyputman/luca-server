@@ -1,4 +1,6 @@
-package com.lucaapps.server.common;
+package com.lucaapps.server.domain.common;
+
+import com.lucaapps.server.domain.client.Client;
 
 import javax.persistence.*;
 

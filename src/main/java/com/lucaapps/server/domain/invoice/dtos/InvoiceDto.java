@@ -1,4 +1,4 @@
-package com.lucaapps.server.invoice.dtos;
+package com.lucaapps.server.domain.invoice.dtos;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package com.lucaapps.server.invoice.repository;
+package com.lucaapps.server.domain.invoice.repository;
 
-import com.lucaapps.server.invoice.entities.Invoice;
+import com.lucaapps.server.domain.invoice.entities.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

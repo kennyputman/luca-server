@@ -1,6 +1,6 @@
-package com.lucaapps.server.invoice.dtos;
+package com.lucaapps.server.domain.invoice.dtos;
 
-import com.lucaapps.server.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.entities.Item;
 import lombok.*;
 
 import java.math.BigDecimal;

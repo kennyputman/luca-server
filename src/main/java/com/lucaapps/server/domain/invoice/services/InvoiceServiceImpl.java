@@ -1,14 +1,14 @@
-package com.lucaapps.server.invoice.services;
+package com.lucaapps.server.domain.invoice.services;
 
 import com.lucaapps.server.exception.AppException;
 import com.lucaapps.server.exception.Error;
-import com.lucaapps.server.invoice.dtos.InvoiceDto;
-import com.lucaapps.server.invoice.dtos.InvoicePostDto;
-import com.lucaapps.server.invoice.dtos.InvoicePutDto;
-import com.lucaapps.server.invoice.dtos.InvoiceWithItemsDto;
-import com.lucaapps.server.invoice.entities.Invoice;
-import com.lucaapps.server.invoice.entities.Item;
-import com.lucaapps.server.invoice.repository.InvoiceRepository;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePostDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoicePutDto;
+import com.lucaapps.server.domain.invoice.dtos.InvoiceWithItemsDto;
+import com.lucaapps.server.domain.invoice.entities.Invoice;
+import com.lucaapps.server.domain.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

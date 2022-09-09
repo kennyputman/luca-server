@@ -1,7 +1,7 @@
-package com.lucaapps.server.invoice.services;
+package com.lucaapps.server.domain.invoice.services;
 
-import com.lucaapps.server.invoice.entities.Item;
-import com.lucaapps.server.invoice.repository.ItemRepository;
+import com.lucaapps.server.domain.invoice.entities.Item;
+import com.lucaapps.server.domain.invoice.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

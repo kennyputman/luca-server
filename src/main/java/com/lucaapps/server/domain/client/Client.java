@@ -1,5 +1,8 @@
-package com.lucaapps.server.common;
+package com.lucaapps.server.domain.client;
 
+
+import com.lucaapps.server.domain.common.Address;
+import com.lucaapps.server.domain.common.BaseEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

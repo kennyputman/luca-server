@@ -1,7 +1,7 @@
-package com.lucaapps.server.invoice.entities;
+package com.lucaapps.server.domain.invoice.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lucaapps.server.common.BaseEntity;
+import com.lucaapps.server.domain.common.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
