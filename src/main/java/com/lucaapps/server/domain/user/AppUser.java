@@ -16,7 +16,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class AppUser extends BaseEntity implements UserDetails {
 
     @Column(nullable = false)
@@ -32,7 +32,9 @@ public class AppUser extends BaseEntity implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole = UserRole.USER;
+    @Column
     private Boolean locked = false;
+    @Column
     private Boolean enabled = true;
 
     public AppUser(String firstName,
