@@ -34,3 +34,4 @@ build/
 
 ### App Keys ####
 secrets.properties
+certs/
