@@ -1,4 +1,4 @@
-package com.lucaapps.server.domain.user.Dto;
+package com.lucaapps.server.domain.user.dtos;
 
 import lombok.*;
 

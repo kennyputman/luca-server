@@ -1,7 +1,9 @@
 package com.lucaapps.server.domain.user;
 
-import com.lucaapps.server.domain.user.Dto.AppUserRegisterDto;
-import com.lucaapps.server.domain.user.Dto.AppUserResponseDto;
+import com.lucaapps.server.domain.user.dtos.AppUserRegisterDto;
+import com.lucaapps.server.domain.user.dtos.AppUserResponseDto;
+import com.lucaapps.server.domain.user.dtos.UserLoginDto;
+import com.lucaapps.server.domain.user.service.AppUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,14 @@ public class UserController {
         AppUserResponseDto newUser = this.userService.register(userDto);
 
         return ResponseEntity.ok(newUser);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody UserLoginDto loginDto){
+
+        AppUserResponseDto loggedInUser = this.userService.login(loginDto);
+
+        return ResponseEntity.ok(loggedInUser);
     }
 }
 

@@ -1,5 +1,6 @@
-package com.lucaapps.server.domain.user;
+package com.lucaapps.server.domain.user.service;
 
+import com.lucaapps.server.domain.user.AppUserRepository;
 import com.lucaapps.server.exception.AppException;
 import com.lucaapps.server.exception.Error;
 import org.springframework.beans.factory.annotation.Autowired;

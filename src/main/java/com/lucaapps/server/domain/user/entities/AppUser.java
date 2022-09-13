@@ -1,4 +1,4 @@
-package com.lucaapps.server.domain.user;
+package com.lucaapps.server.domain.user.entities;
 
 import com.lucaapps.server.domain.common.BaseEntity;
 import lombok.*;

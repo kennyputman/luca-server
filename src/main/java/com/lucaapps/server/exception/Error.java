@@ -6,7 +6,8 @@ public enum Error {
 
     INVOICE_NOT_FOUND("Invoice not found", HttpStatus.NOT_FOUND),
     USERNAME_NOT_FOUND("username not found", HttpStatus.NOT_FOUND),
-    DUPLICATE_USER("User email is already taken", HttpStatus.CONFLICT);
+    DUPLICATE_USER("User email is already taken", HttpStatus.CONFLICT),
+    INVALID_LOGIN_INFO("Either the email or password is incorrect", HttpStatus.UNAUTHORIZED);
 
     private final String message;
     private final HttpStatus status;
