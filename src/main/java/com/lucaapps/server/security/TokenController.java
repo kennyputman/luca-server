@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
-@RestController
-public class TokenController {
-    private final JwtEncoder encoder;
-
-    @Autowired
-    public TokenController(JwtEncoder encoder) {
-        this.encoder = encoder;
-    }
-
-    @PostMapping("/api/v1/token")
-    public String token(Authentication authentication) {
-        Instant now = Instant.now();
-        long expiry = 36000L;
-        String scope = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(" "));
-        JwtClaimsSet claims = JwtClaimsSet.builder()
-                .issuer("self")
-                .issuedAt(now)
-                .expiresAt(now.plusSeconds(expiry))
-                .subject(authentication.getName())
-                .claim("scope", scope)
-                .build();
-        return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-    }
-}
+////@RestController
+//public class TokenController {
+//    private final JwtEncoder encoder;
+//
+//    @Autowired
+//    public TokenController(JwtEncoder encoder) {
+//        this.encoder = encoder;
+//    }
+//
+//    @PostMapping("/api/v1/token")
+//    public String token(Authentication authentication) {
+//        Instant now = Instant.now();
+//        long expiry = 36000L;
+//        String scope = authentication.getAuthorities().stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .collect(Collectors.joining(" "));
+//        JwtClaimsSet claims = JwtClaimsSet.builder()
+//                .issuer("self")
+//                .issuedAt(now)
+//                .expiresAt(now.plusSeconds(expiry))
+//                .subject(authentication.getName())
+//                .claim("scope", scope)
+//                .build();
+//        return this.encoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
+//    }
+//}

@@ -13,6 +13,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
@@ -23,37 +24,22 @@ public class AppUser extends BaseEntity implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(unique = true)
-    private String organization;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private UserRole userRole = UserRole.USER;
-    @Column
-    private Boolean locked = false;
-    @Column
-    private Boolean enabled = true;
 
-    public AppUser(String firstName,
-                   String lastName,
-                   String organization,
-                   String email,
-                   String password,
-                   UserRole userRole,
-                   Boolean locked,
-                   Boolean enabled) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.organization = organization;
-        this.email = email;
-        this.password = password;
-        this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
-    }
+    @Column
+    @Builder.Default
+    private Boolean locked = false;
+
+    @Column
+    @Builder.Default
+    private Boolean enabled = true;
 
 
     @Override

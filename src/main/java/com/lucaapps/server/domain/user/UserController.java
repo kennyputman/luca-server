@@ -1,9 +1,13 @@
 package com.lucaapps.server.domain.user;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.lucaapps.server.domain.user.Dto.AppUserRegisterDto;
+import com.lucaapps.server.domain.user.Dto.AppUserResponseDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.security.Principal;
 
 
 @RestController
@@ -11,15 +15,34 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
 
+    private final AppUserServiceImpl userService;
+
+
+    @Autowired
+    public UserController(AppUserServiceImpl userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/")
-    public String hello(Authentication authentication) {
-        return "Hello, " + authentication.getPrincipal() + "!";
+    public String hello(Principal principal) {
+
+        return "Hello, " + principal.getName() + "!";
     }
 
 
     @PostMapping("register")
-    public ResponseEntity<?> registerUser(){
+    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody AppUserRegisterDto userDto){
 
-        return ResponseEntity.ok("registered!");
+        AppUserResponseDto newUser = this.userService.register(userDto);
+
+        return ResponseEntity.ok(newUser);
     }
 }
+
+
+
+
+
+
+
+
