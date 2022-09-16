@@ -9,6 +9,8 @@ import com.lucaapps.server.domain.invoice.services.InvoiceService;
 import com.lucaapps.server.domain.invoice.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +31,7 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<InvoiceDto>> getInvoices() {
+    public ResponseEntity<List<InvoiceDto>> getInvoices(@AuthenticationPrincipal User authUser) {
         return ResponseEntity.ok(this.invoiceService.getAllInvoices());
     }
 
