@@ -5,6 +5,7 @@ import com.lucaapps.server.domain.user.dtos.AppUserResponseDto;
 import com.lucaapps.server.domain.user.dtos.UserLoginDto;
 import com.lucaapps.server.domain.user.service.AppUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +27,9 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String hello(Principal principal) {
+    public String hello() {
 
-        return "Hello, " + principal.getName() + "!";
+        return "Hello";
     }
 
 

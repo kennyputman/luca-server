@@ -7,6 +7,7 @@ import com.lucaapps.server.domain.user.dtos.AppUserRegisterDto;
 import com.lucaapps.server.domain.user.dtos.AppUserResponseDto;
 import com.lucaapps.server.exception.AppException;
 import com.lucaapps.server.exception.Error;
+import com.lucaapps.server.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,13 @@ public class AppUserServiceImpl implements AppUserService {
 
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
     @Autowired
-    public AppUserServiceImpl(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
+    public AppUserServiceImpl(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder, JwtUtils jwtUtils) {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
     }
 
     @Override
@@ -39,7 +42,8 @@ public class AppUserServiceImpl implements AppUserService {
 
         AppUser newUser = this.appUserRepository.save(appUser);
 
-        return userMapper(newUser);
+        String token = jwtUtils.generateToken(newUser.getUsername());
+        return userMapper(newUser, token);
 
     }
 
@@ -49,17 +53,19 @@ public class AppUserServiceImpl implements AppUserService {
                 passwordEncoder.matches(loginDto.getPassword(), user.getPassword())
         ).orElseThrow(() -> new AppException(Error.INVALID_LOGIN_INFO));
 
-        return userMapper(loggedInUser);
+        String token = jwtUtils.generateToken(loggedInUser.getUsername());
+        return userMapper(loggedInUser, token);
 
     }
 
 
-    private AppUserResponseDto userMapper(AppUser user) {
+    private AppUserResponseDto userMapper(AppUser user, String token) {
         return AppUserResponseDto.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .token(token)
                 .build();
     }
 }

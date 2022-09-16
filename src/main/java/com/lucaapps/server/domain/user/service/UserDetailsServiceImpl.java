@@ -1,9 +1,11 @@
 package com.lucaapps.server.domain.user.service;
 
 import com.lucaapps.server.domain.user.AppUserRepository;
+import com.lucaapps.server.domain.user.entities.AppUser;
 import com.lucaapps.server.exception.AppException;
 import com.lucaapps.server.exception.Error;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
