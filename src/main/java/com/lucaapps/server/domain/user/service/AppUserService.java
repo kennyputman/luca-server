@@ -6,6 +6,5 @@ import com.lucaapps.server.domain.user.dtos.UserLoginDto;
 
 public interface AppUserService {
     AppUserResponseDto register(AppUserRegisterDto user);
-
     AppUserResponseDto login(UserLoginDto loginDto);
 }
