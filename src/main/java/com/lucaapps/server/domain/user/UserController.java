@@ -5,12 +5,10 @@ import com.lucaapps.server.domain.user.dtos.AppUserResponseDto;
 import com.lucaapps.server.domain.user.dtos.UserLoginDto;
 import com.lucaapps.server.domain.user.service.AppUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 
 @RestController
@@ -24,12 +22,6 @@ public class UserController {
     @Autowired
     public UserController(AppUserServiceImpl userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/")
-    public String hello() {
-
-        return "Hello";
     }
 
 

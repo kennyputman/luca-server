@@ -1,5 +1,6 @@
 package com.lucaapps.server.security;
 
+import com.lucaapps.server.domain.user.entities.AppUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -25,17 +26,14 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(signKey.getBytes(StandardCharsets.UTF_8));
     }
 
-    public String generateToken(String sub) {
+    public String generateToken(AppUser appUser) {
 
         Key key = setKey();
-        if (sub == null || sub.equals("")){
-            return null;
-        }
-        Instant exp = Instant.now();
+
         return Jwts.builder()
-                .setSubject(sub)
-                .setIssuedAt(new Date(exp.toEpochMilli()))
-                .setExpiration(new Date(exp.toEpochMilli() + 3600000))
+                .setSubject(appUser.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000*60*60*10))
                 .signWith(key)
                 .compact();
     }

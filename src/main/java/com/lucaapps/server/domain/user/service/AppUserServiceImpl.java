@@ -42,7 +42,7 @@ public class AppUserServiceImpl implements AppUserService {
 
         AppUser newUser = this.appUserRepository.save(appUser);
 
-        String token = jwtUtils.generateToken(newUser.getUsername());
+        String token = jwtUtils.generateToken(appUser);
         return userMapper(newUser, token);
 
     }
@@ -53,7 +53,7 @@ public class AppUserServiceImpl implements AppUserService {
                 passwordEncoder.matches(loginDto.getPassword(), user.getPassword())
         ).orElseThrow(() -> new AppException(Error.INVALID_LOGIN_INFO));
 
-        String token = jwtUtils.generateToken(loggedInUser.getUsername());
+        String token = jwtUtils.generateToken(loggedInUser);
         return userMapper(loggedInUser, token);
 
     }
