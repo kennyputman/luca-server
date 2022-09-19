@@ -15,9 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-
     private final AppUserServiceImpl userService;
-
 
     @Autowired
     public UserController(AppUserServiceImpl userService) {
@@ -26,7 +24,7 @@ public class UserController {
 
 
     @PostMapping("register")
-    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody AppUserRegisterDto userDto){
+    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody AppUserRegisterDto userDto) {
 
         AppUserResponseDto newUser = this.userService.register(userDto);
 
@@ -34,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody UserLoginDto loginDto){
+    public ResponseEntity<AppUserResponseDto> registerUser(@Valid @RequestBody UserLoginDto loginDto) {
 
         AppUserResponseDto loggedInUser = this.userService.login(loginDto);
 

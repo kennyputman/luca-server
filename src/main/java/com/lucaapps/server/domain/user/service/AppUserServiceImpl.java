@@ -58,7 +58,6 @@ public class AppUserServiceImpl implements AppUserService {
 
     }
 
-
     private AppUserResponseDto userMapper(AppUser user, String token) {
         return AppUserResponseDto.builder()
                 .id(user.getId())

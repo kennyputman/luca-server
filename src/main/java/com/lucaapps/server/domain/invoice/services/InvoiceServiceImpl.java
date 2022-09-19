@@ -20,7 +20,6 @@ import java.util.Optional;
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
 
-
     private final InvoiceRepository invoiceRepository;
 
     @Autowired
@@ -105,7 +104,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         return mapInvoiceToInvoiceWithItemsDto(invoice);
     }
 
-    private InvoiceWithItemsDto mapInvoiceToInvoiceWithItemsDto(Invoice i){
+    private InvoiceWithItemsDto mapInvoiceToInvoiceWithItemsDto(Invoice i) {
         return InvoiceWithItemsDto.builder()
                 .id(i.getId())
                 .createdAt(i.getCreatedAt())
@@ -117,20 +116,3 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

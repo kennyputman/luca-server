@@ -22,15 +22,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtils jwtUtils;
 
     @Autowired
-    public JwtAuthFilter(UserDetailsService userDetailsService,
-                         JwtUtils jwtUtils) {
+    public JwtAuthFilter(UserDetailsService userDetailsService, JwtUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = userDetailsService;
     }
 
-
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         String username = null;
         String jwt = jwtUtils.resolveToken(request);
         if (jwt != null && jwtUtils.validateToken(jwt)) {

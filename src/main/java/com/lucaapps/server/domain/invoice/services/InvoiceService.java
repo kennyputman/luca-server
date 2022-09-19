@@ -9,7 +9,6 @@ import com.lucaapps.server.domain.invoice.entities.Invoice;
 import java.util.List;
 
 public interface InvoiceService {
-
     List<InvoiceDto> getAllInvoices();
 
     Invoice getInvoiceById(Long id);

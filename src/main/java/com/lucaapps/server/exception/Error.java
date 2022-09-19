@@ -12,7 +12,6 @@ public enum Error {
     private final String message;
     private final HttpStatus status;
 
-
     Error(String message, HttpStatus status) {
         this.message = message;
         this.status = status;
