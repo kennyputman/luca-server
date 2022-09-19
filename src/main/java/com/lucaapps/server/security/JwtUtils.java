@@ -19,16 +19,13 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    @Value("${luca.auth.token.key}")
-    String signKey;
+    private Key key;
 
-    private Key setKey(){
-        return Keys.hmacShaKeyFor(signKey.getBytes(StandardCharsets.UTF_8));
+    public JwtUtils(@Value("${luca.auth.token.key}") String signKey) {
+        this.key = Keys.hmacShaKeyFor(signKey.getBytes(StandardCharsets.UTF_8));
     }
 
     public String generateToken(AppUser appUser) {
-
-        Key key = setKey();
 
         return Jwts.builder()
                 .setSubject(appUser.getUsername())
@@ -39,7 +36,6 @@ public class JwtUtils {
     }
 
     public boolean validateToken(String jwt){
-        Key key = setKey();
         try {
             Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
             Instant now = Instant.now();
@@ -51,7 +47,6 @@ public class JwtUtils {
     }
 
     public String getSub(String jwt) {
-        Key key = setKey();
         try {
             Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
             return claims.getSubject();
