@@ -5,19 +5,19 @@ import com.lucaapps.server.domain.invoice.dtos.InvoicePostDto;
 import com.lucaapps.server.domain.invoice.dtos.InvoicePutDto;
 import com.lucaapps.server.domain.invoice.dtos.InvoiceWithItemsDto;
 import com.lucaapps.server.domain.invoice.entities.Invoice;
+import com.lucaapps.server.domain.user.entities.AppUser;
 
 import java.util.List;
 
 public interface InvoiceService {
-    List<InvoiceDto> getAllInvoices();
+    List<InvoiceDto> getAllInvoices(AppUser authUser);
 
-    Invoice getInvoiceById(Long id);
 
-    InvoiceWithItemsDto addNewInvoice(InvoicePostDto invoicePostDto);
+    InvoiceWithItemsDto addNewInvoice(InvoicePostDto invoicePostDto, AppUser authUser);
 
-    void deleteInvoice(Long invoiceId);
+    void deleteInvoice(Long invoiceId, AppUser authUser);
 
-    InvoiceWithItemsDto getInvoiceWithItems(Long id);
+    InvoiceWithItemsDto getInvoiceWithItems(Long id, AppUser authUser);
 
-    InvoiceWithItemsDto updateInvoice(InvoicePutDto updatedInvoice);
+    InvoiceWithItemsDto updateInvoice(InvoicePutDto updatedInvoice, AppUser authUser);
 }

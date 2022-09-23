@@ -1,14 +1,17 @@
 package com.lucaapps.server.domain.user.entities;
 
 import com.lucaapps.server.domain.common.BaseEntity;
+import com.lucaapps.server.domain.invoice.entities.Invoice;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,6 +31,9 @@ public class AppUser extends BaseEntity implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "appUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Invoice> invoices = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Builder.Default
